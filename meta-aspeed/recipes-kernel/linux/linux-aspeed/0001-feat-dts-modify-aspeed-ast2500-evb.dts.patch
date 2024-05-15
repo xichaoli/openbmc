@@ -1,0 +1,62 @@
+From 2c1147d8ed901c9148f15b5542c2137261370d5c Mon Sep 17 00:00:00 2001
+From: lixc <xichao@sina.cn>
+Date: Wed, 15 May 2024 12:51:45 +0800
+Subject: [PATCH] feat(dts): modify aspeed-ast2500-evb.dts
+
+  1. Set flash size to 65535, so use openbmc-flash-layout-64.dtsi
+  2. Disables some unwanted configuration(spi1,spi2,mac1,sdmmc,sdhci0)
+---
+ arch/arm/boot/dts/aspeed/aspeed-ast2500-evb.dts | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-ast2500-evb.dts b/arch/arm/boot/dts/aspeed/aspeed-ast2500-evb.dts
+index a497dd135491..6ac9132093db 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-ast2500-evb.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-ast2500-evb.dts
+@@ -41,12 +41,12 @@ flash@0 {
+ 		m25p,fast-read;
+ 		label = "bmc";
+ 		spi-max-frequency = <50000000>;
+-#include "openbmc-flash-layout.dtsi"
++#include "openbmc-flash-layout-64.dtsi"
+ 	};
+ };
+ 
+ &spi1 {
+-	status = "okay";
++	status = "disable";
+ 	flash@0 {
+ 		status = "okay";
+ 		m25p,fast-read;
+@@ -56,7 +56,7 @@ flash@0 {
+ };
+ 
+ &spi2 {
+-	status = "okay";
++	status = "disable";
+ };
+ 
+ &uart5 {
+@@ -71,7 +71,7 @@ &mac0 {
+ };
+ 
+ &mac1 {
+-	status = "okay";
++	status = "disable";
+ 
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_rgmii2_default &pinctrl_mdio2_default>;
+@@ -97,11 +97,11 @@ lm75@4d {
+ };
+ 
+ &sdmmc {
+-	status = "okay";
++	status = "disable";
+ };
+ 
+ &sdhci0 {
+-	status = "okay";
++	status = "disable";
+ 
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_sd1_default>;

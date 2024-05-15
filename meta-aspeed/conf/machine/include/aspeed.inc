@@ -52,7 +52,8 @@ QB_DEFAULT_KERNEL = "none"
 QB_MEM = "-m 512"
 
 QB_MACHINE:aspeed-g4 = "-machine palmetto-bmc"
-QB_MACHINE:aspeed-g5 = "-machine ast2500-evb"
+# We have set flash size to 65536
+QB_MACHINE:aspeed-g5 = "-machine g220a-bmc"
 QB_MACHINE:aspeed-g6 = "-machine ast2600-evb"
 QB_MEM:aspeed-g5 = "-m 1G"
 QB_MEM:aspeed-g6 = "-m 1G"
