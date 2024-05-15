@@ -18,6 +18,9 @@ SRC_URI:append:aspeed:df-aspeednic-use-mac2 = " \
 SRC_URI:append:aspeed:df-aspeed-spi-master = " \
     file://0006-aspeed-Enable-SPI-master-mode-by-default.patch \
     "
+SRC_URI:append:aspeed = " \
+    file://0009-fix-env-modify-u-boot-evn-to-accommodate-64M-flash.patch \
+    "
 do_patch[depends] += "os-release:do_populate_sysroot"
 
 python do_patch:append:aspeed:df-obmc-ubi-fs () {
