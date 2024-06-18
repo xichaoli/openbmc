@@ -2,7 +2,7 @@ MACHINE ??= "g220a"
 DISTRO ?= "openbmc-phosphor"
 PACKAGE_CLASSES ?= "package_ipk"
 SANITY_TESTED_DISTROS:append ?= " *"
-EXTRA_IMAGE_FEATURES = "debug-tweaks"
+EXTRA_IMAGE_FEATURES = "debug-tweaks package-management ssh-server-openssh serial-autologin-root"
 USER_CLASSES ?= "buildstats"
 PATCHRESOLVE = "noop"
 BB_DISKMON_DIRS = "\
@@ -15,3 +15,12 @@ BB_DISKMON_DIRS = "\
     HALT,${SSTATE_DIR},100M,1K \
     HALT,/tmp,10M,1K"
 CONF_VERSION = "2"
+
+IMAGE_INSTALL:append = " procps iproute2 curl jq usbutils util-linux file ltrace strace tcpdump traceroute mtd-utils"
+
+BB_NUMBER_THREADS = "8"
+PARALLEL_MAKE = "-j 8"
+
+DL_DIR = "/data/downloads"
+
+FLASH_RWFS_OFFSET:flash-65536 = "49152"
