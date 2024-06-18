@@ -1,0 +1,24 @@
+From bd5d1c79bcd29ae811dd7aaec34fe2553df9622d Mon Sep 17 00:00:00 2001
+From: lixc <xichao@sina.cn>
+Date: Mon, 17 Jun 2024 17:01:56 +0800
+Subject: [PATCH] fix: Make NPM higher than version 16 available for
+ compilation
+
+---
+ vue.config.js | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/vue.config.js b/vue.config.js
+index ed8beae..5a9af11 100644
+--- a/vue.config.js
++++ b/vue.config.js
+@@ -98,6 +98,9 @@ module.exports = {
+   },
+   productionSourceMap: false,
+   configureWebpack: (config) => {
++    const crypto = require('crypto');
++    const crypto_orig_createHash = crypto.createHash;
++    crypto.createHash = (algorithm) => crypto_orig_createHash(algorithm == 'md4'?'sha256':algorithm);
+     const envName = process.env.VUE_APP_ENV_NAME;
+     const hasCustomStore = process.env.CUSTOM_STORE === 'true' ? true : false;
+     const hasCustomRouter = process.env.CUSTOM_ROUTER === 'true' ? true : false;
