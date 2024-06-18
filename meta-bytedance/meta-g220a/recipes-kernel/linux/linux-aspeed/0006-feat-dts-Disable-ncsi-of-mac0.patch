@@ -1,0 +1,21 @@
+From 0b02688695fb98bfcf4a731a51d12cb0ee1154b0 Mon Sep 17 00:00:00 2001
+From: lixc <xichao@sina.cn>
+Date: Mon, 17 Jun 2024 10:51:11 +0800
+Subject: [PATCH] feat(dts): Disable ncsi of mac0.
+
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-bytedance-g220a.dts | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-bytedance-g220a.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-bytedance-g220a.dts
+index 03bd5a433e7e3..ceddfaa9c1e91 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-bytedance-g220a.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-bytedance-g220a.dts
+@@ -401,7 +401,6 @@ &mac0 {
+ 	clocks = <&syscon ASPEED_CLK_GATE_MAC1CLK>,
+ 		 <&syscon ASPEED_CLK_MAC1RCLK>;
+ 	clock-names = "MACCLK", "RCLK";
+-	use-ncsi;
+ };
+ 
+ &mac1 {
